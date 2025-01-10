@@ -11,7 +11,7 @@ struct ContentView: View {
     var moves = ["Rock", "Paper", "Scissors"]
     @State var playerScore = 0
     @State var playerMove: String = ""
-    @State var appMove = Int.random(in: 0...2)
+    @State var appChoice = Int.random(in: 0...2)
     @State var shouldWin = Bool.random()
     
     var body: some View {
@@ -23,7 +23,7 @@ struct ContentView: View {
                 .font(.system(size: 20))
         }
         VStack {
-            Text("App Move: \(moves[appMove])")
+            Text("App Move: \(moves[appChoice])")
             Text("Player should: \(shouldWin ? "Win" : "Lose")")
         }
         .font(.system(size: 20))
