@@ -7,6 +7,24 @@
 
 import SwiftUI
 
+struct ButtonStyle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .bold()
+            .font(.system(size: 18))
+            .frame(width: 115, height: 90)
+            .foregroundStyle(.white)
+            .background(.blue)
+            .clipShape(RoundedRectangle(cornerRadius: 30))
+    }
+}
+
+extension View {
+    func buttonStyle() -> some View {
+        modifier(ButtonStyle())
+    }
+}
+
 struct ContentView: View {
     var moves = ["Rock", "Paper", "Scissor"]
     @State var roundsPlayed = 0
@@ -40,6 +58,7 @@ struct ContentView: View {
                     Text(moves[number])
                 }
             }
+            .buttonStyle()
         }
         .alert(roundTitle, isPresented: $showAlert) {
             Button(action: nextRound) {
