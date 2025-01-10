@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    var moves = ["Rock", "Paper", "Scissors"]
+    var moves = ["Rock", "Paper", "Scissor"]
+    @State var roundsPlayed = 0
     @State var playerScore = 0
     @State var playerMove: String = ""
     @State var appChoice = Int.random(in: 0...2)
@@ -19,6 +20,8 @@ struct ContentView: View {
             Text("Rock Paper Scissors")
                 .font(.largeTitle)
                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+            Text("Round: \(roundsPlayed + 1)")
+                .font(.system(size: 20))
             Text("Player Score: \(playerScore)/6")
                 .font(.system(size: 20))
         }
