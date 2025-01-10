@@ -12,7 +12,7 @@ struct ButtonStyle: ViewModifier {
         content
             .bold()
             .font(.system(size: 18))
-            .frame(width: 115, height: 90)
+            .frame(width: 250, height: 150)
             .foregroundStyle(.white)
             .background(.blue)
             .clipShape(RoundedRectangle(cornerRadius: 30))
@@ -37,7 +37,10 @@ struct ContentView: View {
     @State var isGameOver = false
     
     var body: some View {
-        VStack {
+        
+        Spacer()
+        
+        VStack(spacing: 4) {
             Text("Rock Paper Scissors")
                 .font(.largeTitle)
                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
@@ -46,20 +49,27 @@ struct ContentView: View {
             Text("Player Score: \(playerScore)/6")
                 .font(.system(size: 20))
         }
-        VStack {
+        .padding(30)
+        
+        Spacer()
+        
+        VStack(spacing: 4) {
             Text("App Move: \(moves[appChoice])")
             Text("Player should: \(shouldWin ? "Win" : "Lose")")
         }
-        .font(.system(size: 20))
+        .font(.system(size: 19))
+        .bold()
         
-        HStack {
+        VStack(spacing: 15) {
             ForEach(0...2, id: \.self) { number in
                 Button(action: {nextMove(number)}) {  // Curly braces are required for action when you pass in a parameter to the action
                     Text(moves[number])
+                        .frame(width: 220, height: 120)
                 }
+                .buttonStyle()
             }
-            .buttonStyle()
         }
+        .padding()
         .alert(roundTitle, isPresented: $showAlert) {
             Button(action: nextRound) {
                 Text("Continue")
@@ -67,6 +77,9 @@ struct ContentView: View {
         } message: {
             Text("Your score is \(playerScore)/6")
         }
+        
+        Spacer()
+        Spacer()
     }
     
     func nextMove(_ playerChoice: Int) {
