@@ -54,11 +54,15 @@ struct ContentView: View {
         Spacer()
         
         VStack(spacing: 4) {
-            Text("App Move: \(moves[appChoice])")
-            Text("Player should: \(shouldWin ? "Win" : "Lose")")
+            Text("App Move: ")
+                .font(.system(size: 19))
+                + Text(moves[appChoice])
+                .bold()
+            Text("Player should: ")
+                .font(.system(size: 19))
+                + Text(shouldWin ? "Win" : "Lose")
+                .bold()
         }
-        .font(.system(size: 19))
-        .bold()
         
         VStack(spacing: 15) {
             ForEach(0...2, id: \.self) { number in
